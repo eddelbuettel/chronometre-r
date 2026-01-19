@@ -61,7 +61,7 @@ This generated sample output such as the following:
 > xptr::is_xptr(sw)                                   # this is an external pointer in R
 [1] TRUE
 
-> xptr::xptr_address(sw)                              # we can get the address, format is "0x...."
+> xptr::xptr_address(sw)                              # get the address, format is "0x...."
 [1] "0x5aa1dbb42a70"
 
 > sw2 <- xptr::new_xptr(xptr::xptr_address(sw))       # cloned (!!) but unclassed
@@ -71,7 +71,7 @@ This generated sample output such as the following:
 > print(sw2)                                          # so `xptr` allows us close and use
 0.503156 
 
-> sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # so does the Python object _with a string ctor_
+> sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # new Python object via string ctor
 
 > print(sw3$elapsed())                                # shows output via Python I/O
 datetime.timedelta(microseconds=503619)
@@ -83,14 +83,14 @@ datetime.timedelta(microseconds=503619)
 
 demonstrating that the memory address is in fact the same, and the behavior is shared. It can also
 be run via `Rscript` or `r` or via its shebang; in the latter two cases using `r` only explicit
-`print()` statements show output:
+`print()` statements show output: (and we add comments here as illustration)
 
 ```r
 $ demo/chronometre.R 
-0.500735 
-0.502508 
-datetime.timedelta(microseconds=502929)
-0.503553 
+0.500735                                  # R object after 500 msec sleep
+0.502508                                  # cloned R object shares that time
+datetime.timedelta(microseconds=502929)   # so does the new Python object
+0.503553                                  # and original R object still works
 $ 
 ```
 
@@ -112,3 +112,4 @@ GPL (version 2 or later).
 [rcppspdlog]: https://github.com/eddelbuettel/rcppspdlog
 [spdlog_stopwatch]: https://github.com/eddelbuettel/rcppspdlog/blob/master/inst/include/spdlog_stopwatch.h
 [xptr]: https://github.com/eddelbuettel/xptr
+[chronometre-py]: https://github.com/eddelbuettel/chronometr-py
