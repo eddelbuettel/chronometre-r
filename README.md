@@ -51,7 +51,7 @@ This generated sample output such as the following:
 
 > ch <- import("chronometre")
 
-> sw <- RcppSpdlog::get_stopwatch()                   # we use a simple C++ struct as example
+> sw <- RcppSpdlog::get_stopwatch()                   # we use a C++ struct as example
 
 > Sys.sleep(0.5)                                      # imagine doing some code here
 
@@ -61,14 +61,14 @@ This generated sample output such as the following:
 > xptr::is_xptr(sw)                                   # this is an external pointer in R
 [1] TRUE
 
-> xptr::xptr_address(sw)                              # get the address, format is "0x...."
+> xptr::xptr_address(sw)                              # get address, format is "0x...."
 [1] "0x5aa1dbb42a70"
 
 > sw2 <- xptr::new_xptr(xptr::xptr_address(sw))       # cloned (!!) but unclassed
 
 > attr(sw2, "class") <- c("stopwatch", "externalptr") # class it .. and then use it!
 
-> print(sw2)                                          # so `xptr` allows us close and use
+> print(sw2)                                          # `xptr` allows us clone and use
 0.503156 
 
 > sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # new Python object via string ctor
