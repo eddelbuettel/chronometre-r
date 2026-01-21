@@ -23,26 +23,21 @@ jobs:
         uses: actions/checkout@v6
         
       - name: Setup
-        uses: eddelbuettel/github-actions/r-ci@master
-        
-      - name: Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
-          cache: 'pip' # Cache pip dependencies
-          
+        uses: eddelbuettel/github-actions/r-ci@master        
+         
       - name: Dependencies
         run: ./run.sh install_all
+
+      - name: Python
+        run: sudo apt install -y --no-install-recommends python3-pip python3-venv
         
       - name: Python packages
         run: |
           library(reticulate)
-          virtualenv_create("r-reticulate-env", python = Sys.getenv("PYTHON_BIN"))
+          virtualenv_create("r-reticulate-env")
           virtualenv_install("r-reticulate-env", packages = c("chronometre"))
           use_virtualenv("r-reticulate-env", required = TRUE)
         shell: Rscript {0}
-        env:
-          PYTHON_BIN: ${{ steps.setup-python.outputs.python-path }} # Path to installed python binary
           
       - name: Test
         run: ./run.sh run_tests
