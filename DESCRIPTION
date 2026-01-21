@@ -1,14 +1,15 @@
 Package: chronometre
 Type: Package
-Title: A 'chronomètre' or a simple 'stopwatch' 
+Title: A 'chronomètre' is a 'stopwatch' 
 Version: 0.0.1
 Date: 2026-01-19
 Authors@R: person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@debian.org")
 Description: As a 'chronomètre' is a 'stopwatch', this package offers a simple stopwatch, and
- in particular one that can be shared with Python such that both interpreters operate on
- the same object instance and shown in the demo file.
+ in particular one that can be shared with Python (using the corresponding package of the same
+ name available via 'PyPi') such that both interpreters operate on the same object instance and
+ shown in the demo file, as well as in the unit tests.
 Suggests: RcppSpdlog, xptr, reticulate, tinytest
-URL: https://github.com/eddelbuettel/chronometre
-BugReports: https://github.com/eddelbuettel/chronometre/issues
+URL: https://github.com/eddelbuettel/chronometre-r
+BugReports: https://github.com/eddelbuettel/chronometre-r/issues
 License: GPL (>= 2)
 Encoding: UTF-8
