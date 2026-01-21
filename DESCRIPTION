@@ -7,7 +7,7 @@ Authors@R: person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@d
 Description: As a 'chronomètre' is a 'stopwatch', this package offers a simple stopwatch, and
  in particular one that can be shared with Python such that both interpreters operate on
  the same object instance and shown in the demo file.
-Suggests: RcppSpdlog, xptr, reticulate
+Suggests: RcppSpdlog, xptr, reticulate, tinytest
 URL: https://github.com/eddelbuettel/chronometre
 BugReports: https://github.com/eddelbuettel/chronometre/issues
 License: GPL (>= 2)
