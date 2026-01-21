@@ -1,0 +1,57 @@
+# Run CI for R using https://eddelbuettel.github.io/r-ci/
+# Adjusted for need to run Python and reticulate
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    strategy:
+      matrix:
+        include:
+          #- {os: macOS-latest}
+          #- {os: ubuntu-slim}
+          - {os: ubuntu-latest}
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        
+      - name: Setup
+        uses: eddelbuettel/github-actions/r-ci@master
+        
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          cache: 'pip' # Cache pip dependencies
+          
+      - name: Dependencies
+        run: ./run.sh install_all
+        
+      - name: Python packages
+        run: |
+          library(reticulate)
+          virtualenv_create("r-reticulate-env", python = Sys.getenv("PYTHON_BIN"))
+          virtualenv_install("r-reticulate-env", packages = c("chronometre"))
+          use_virtualenv("r-reticulate-env", required = TRUE)
+        shell: Rscript {0}
+        env:
+          PYTHON_BIN: ${{ steps.setup-python.outputs.python-path }} # Path to installed python binary
+          
+      - name: Test
+        run: ./run.sh run_tests
+
+      #- name: Logs
+      #  run: ./run.sh dump_logs
+      #  if: failure()
+        
+      #- name: Coverage
+      #  if: ${{ matrix.os == 'ubuntu-latest' }}
+      #  run: ./run.sh coverage
+      #  env:
+      #    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}  
