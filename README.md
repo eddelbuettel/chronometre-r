@@ -1,6 +1,8 @@
 
 ## chronometre: Simple Stopwatch Class
 
+[![ci](https://github.com/eddelbuettel/chronometre-r/actions/workflows/ci.yaml/badge.svg)](https://github.com/eddelbuettel/chronometre-r/actions/workflows/ci.yaml)
+
 ### Motivation
 
 Interacting with Python code from R has become very convenient via the [reticulate][reticulate]
