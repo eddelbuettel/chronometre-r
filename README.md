@@ -118,4 +118,4 @@ GPL (version 2 or later).
 [rcppspdlog]: https://github.com/eddelbuettel/rcppspdlog
 [spdlog_stopwatch]: https://github.com/eddelbuettel/rcppspdlog/blob/master/inst/include/spdlog_stopwatch.h
 [xptr]: https://github.com/eddelbuettel/xptr
-[chronometre-py]: https://github.com/eddelbuettel/chronometr-py
+[chronometre-py]: https://github.com/eddelbuettel/chronometre-py
