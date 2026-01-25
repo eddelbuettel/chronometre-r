@@ -29,9 +29,9 @@ jobs:
         run: ./run.sh install_all
 
       - name: Python
-        run: sudo apt install -y --no-install-recommends python3-pip python3-venv
+        run: ./run.sh install_aptget python3-pip python3-venv
         
-      - name: Python packages
+      - name: Virtualenv
         run: |
           library(reticulate)
           virtualenv_create("r-reticulate-env")
