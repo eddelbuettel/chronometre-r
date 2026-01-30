@@ -1,6 +1,6 @@
 2026-01-30  Dirk Eddelbuettel  <edd@debian.org>
 
-	* README.md: Add three badges for CRAN, downloads, dependencies
+	* README.md: Add badges for CRAN, downloads, dependencies, pypi
 
 2026-01-25  Dirk Eddelbuettel  <edd@debian.org>
 

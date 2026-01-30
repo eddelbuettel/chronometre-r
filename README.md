@@ -8,6 +8,7 @@
 [![Dependencies](https://tinyverse.netlify.app/badge/chronometre)](https://cran.r-project.org/package=chronometre)
 [![Downloads](https://cranlogs.r-pkg.org/badges/chronometre?color=brightgreen)](https://www.r-pkg.org:443/pkg/chronometre)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/chronometre-r)](https://github.com/eddelbuettel/chronometre-r)
+[![pypi](https://img.shields.io/pypi/v/chronometre?color=3776ab)](https://pypi.org/project/chronometre/)
 
 
 ### Motivation
@@ -27,7 +28,8 @@ This repository has one answer and working demonstration. It uses a very small b
 [spdlog][spdlog] library, and specifically the already simplified version in
 [RcppSpdlog][rcppspdlog] presented by [this 'spdlog_stopwatch.h' file][spdlog_stopwatch].
 
-It cooperates with the Python package in the sibbling Python repo [chronometre-py][chronometre-py].
+It cooperates with the [Python package](https://pypi.org/project/chronometre/) from the
+corresponding the sibbling Python repo [chronometre-py][chronometre-py].
 
 ### R Demo
 
