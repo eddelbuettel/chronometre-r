@@ -3,7 +3,10 @@
 
 [![CI](https://github.com/eddelbuettel/chronometre-r/actions/workflows/ci.yaml/badge.svg)](https://github.com/eddelbuettel/chronometre-r/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat)](https://www.r-project.org/Licenses/GPL-2)
-[![r-universe](https://eddelbuettel.r-universe.dev/chronometre/badges/version)](https://eddelbuettel.r-universe.dev/chronometre)
+[![CRAN](https://www.r-pkg.org/badges/version/chronometre)](https://cran.r-project.org/package=chronometre)
+[![r-universe](https://eddelbuettel.r-universe.dev/badges/chronometre)](https://eddelbuettel.r-universe.dev/chronometre)
+[![Dependencies](https://tinyverse.netlify.app/badge/chronometre)](https://cran.r-project.org/package=chronometre)
+[![Downloads](https://cranlogs.r-pkg.org/badges/chronometre?color=brightgreen)](https://www.r-pkg.org:443/pkg/chronometre)
 [![Last Commit](https://img.shields.io/github/last-commit/eddelbuettel/chronometre-r)](https://github.com/eddelbuettel/chronometre-r)
 
 
