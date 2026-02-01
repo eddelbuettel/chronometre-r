@@ -20,10 +20,6 @@ if (dir.exists(venvdir)) {
 }
 ch <- import("chronometre")
 
-
-use_virtualenv(Sys.getenv("CHRONOMETRE_VENV", "/opt/venv/chronometre"))
-ch <- import("chronometre")
-
 sw <- RcppSpdlog::get_stopwatch()                   # we use a simple C++ struct as example
 Sys.sleep(0.5)                                      # imagine doing some code here
 print(sw)                                           # stopwatch shows elapsed time

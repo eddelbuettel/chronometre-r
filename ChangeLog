@@ -1,3 +1,8 @@
+2026-02-01  Dirk Eddelbuettel  <edd@debian.org>
+
+	* demo/chronometre.R: Remove unconditional virtualenv usage
+	instruction replaced by preceding conditional block
+
 2026-01-30  Dirk Eddelbuettel  <edd@debian.org>
 
 	* README.md: Add badges for CRAN, downloads, dependencies, pypi
