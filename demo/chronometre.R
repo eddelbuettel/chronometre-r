@@ -1,8 +1,8 @@
 #!/usr/bin/env r
 
-stopifnot("This demo requires 'reticulate'" = requireNamespace("reticulate", quietly=TRUE))
-stopifnot("This demo requires 'RcppSpdlog'" = requireNamespace("RcppSpdlog", quietly=TRUE))
-stopifnot("This demo requires 'xptr'" = requireNamespace("xptr", quietly=TRUE))
+stopifnot("Demo requires 'reticulate'" = requireNamespace("reticulate", quietly=TRUE))
+stopifnot("Demo requires 'RcppSpdlog'" = requireNamespace("RcppSpdlog", quietly=TRUE))
+stopifnot("Demo requires 'xptr'" = requireNamespace("xptr", quietly=TRUE))
 
 library(reticulate)
 ## reticulate and Python in general these days really want a venv so we will use one,
@@ -20,19 +20,19 @@ if (dir.exists(venvdir)) {
 }
 ch <- import("chronometre")
 
-sw <- RcppSpdlog::get_stopwatch()                   # we use a simple C++ struct as example
+sw <- RcppSpdlog::get_stopwatch()                   # we use a C++ struct as example
 Sys.sleep(0.5)                                      # imagine doing some code here
 print(sw)                                           # stopwatch shows elapsed time
 
 xptr::is_xptr(sw)                                   # this is an external pointer in R
-xptr::xptr_address(sw)                              # we can get the address, format is "0x...."
+xptr::xptr_address(sw)                              # get address, format is "0x...."
 
 sw2 <- xptr::new_xptr(xptr::xptr_address(sw))       # cloned (!!) but unclassed
 attr(sw2, "class") <- c("stopwatch", "externalptr") # class it .. and then use it!
-print(sw2)                                          # so `xptr` allows us close and use
+print(sw2)                                          # `xptr` allows us close and use
 
-sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # so does the Python object _with a string ctor_
-print(sw3$elapsed())                                # shows datetime.timedelta Python formatted
+sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # new Python object via string ctor
+print(sw3$elapsed())                                # shows output via Python I/O
 cat(sw3$count(), "\n")                              # shows double
 
 

@@ -1,5 +1,7 @@
 2026-02-01  Dirk Eddelbuettel  <edd@debian.org>
 
+	* README.md: Edited and updated with additional call in demo
+
 	* demo/chronometre.R: Remove unconditional virtualenv usage
 	instruction replaced by preceding conditional block
 

@@ -54,41 +54,60 @@ This generated sample output such as the following:
 
 > #!/usr/bin/env r
 > 
+> stopifnot("Demo requires 'reticulate'" = requireNamespace("reticulate", quietly=TRUE))
+
+> stopifnot("Demo requires 'RcppSpdlog'" = requireNamespace("RcppSpdlog", quietly=TRUE))
+
+> stopifnot("Demo requires 'xptr'" = requireNamespace("xptr", quietly=TRUE))
+
 > library(reticulate)
 
-> ## Python (these days ...) really wants a venv so we will use one, the default
-> ## value is a location I used
-> use_virtualenv(Sys.getenv("CHRONOMETRE_VENV", "/opt/venv/chronometre"))
+> ## reticulate and Python in general these days really want a venv so we will use one,
+> ## the default value is a location used locally; if needed create one
+> ## check for existing virtualenv to use, or else set one up
+> venvdir <- Sys.getenv("CHRONOMETRE_VENV", "/opt/venv/chronometre")
 
-> ch <- import("chronometre")
+> if (dir.exists(venvdir)) {
++ >     use_virtualenv(venvdir, required = TRUE)
++ > } else {
++ >     ## create a virtual environment, but make it temporary
++ >     Sys.setenv(RETICULATE_VIRTUALENV_ROOT=tempdir())
++ >     virtualenv_create("r-reticulate-env")
++ >     virtualenv_install("r-reticulate-env", packages = c("chronometre"))
++ >     use_virtualenv("r-reticulate-env", required = TRUE)
++ > }
+
 
 > sw <- RcppSpdlog::get_stopwatch()                   # we use a C++ struct as example
 
 > Sys.sleep(0.5)                                      # imagine doing some code here
 
 > print(sw)                                           # stopwatch shows elapsed time
-0.500918 
+0.501220 
 
 > xptr::is_xptr(sw)                                   # this is an external pointer in R
 [1] TRUE
 
 > xptr::xptr_address(sw)                              # get address, format is "0x...."
-[1] "0x5aa1dbb42a70"
+[1] "0x58adb5918510"
 
 > sw2 <- xptr::new_xptr(xptr::xptr_address(sw))       # cloned (!!) but unclassed
 
 > attr(sw2, "class") <- c("stopwatch", "externalptr") # class it .. and then use it!
 
-> print(sw2)                                          # `xptr` allows us clone and use
-0.503156 
+> print(sw2)                                          # `xptr` allows us close and use
+0.501597 
 
 > sw3 <- ch$Stopwatch(  xptr::xptr_address(sw) )      # new Python object via string ctor
 
 > print(sw3$elapsed())                                # shows output via Python I/O
-datetime.timedelta(microseconds=503619)
+datetime.timedelta(microseconds=502013)
+
+> cat(sw3$count(), "\n")                              # shows double
+0.502657 
 
 > print(sw)                                           # object still works in R
-0.504328 
+0.502721 
 > 
 ```
 
@@ -98,11 +117,11 @@ be run via `Rscript` or `r` or via its shebang; in the latter two cases using `r
 
 ```r
 $ demo/chronometre.R 
-0.500735                                  # R object after 500 msec sleep
-0.502508                                  # cloned R object shares that time
-datetime.timedelta(microseconds=502929)   # so does the new Python object
-0.503553                                  # and original R object still works
-$ 
+0.501075                                  # R object after 500 msec sleep
+0.501281                                  # cloned R object shares that time 
+datetime.timedelta(microseconds=501725)   # so does the new Python object
+0.502482                                  # or Python returning double
+0.502513                                  # and original R object still works    
 ```
 
 ### Author
