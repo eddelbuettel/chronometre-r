@@ -1,8 +1,8 @@
 Package: chronometre
 Type: Package
 Title: A 'chronomètre' is a 'stopwatch' 
-Version: 0.0.1
-Date: 2026-01-25
+Version: 0.0.2
+Date: 2026-02-05
 Authors@R: person("Dirk", "Eddelbuettel", role = c("aut", "cre"), email = "edd@debian.org",
                   comment = c(ORCID = "0000-0001-6419-907X"))
 Description: As a 'chronomètre' is a 'stopwatch', this package offers a simple stopwatch, and
